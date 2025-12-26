@@ -1,0 +1,38 @@
+-- Insert users
+INSERT INTO users (user_id, name) VALUES
+(1, 'Mathu'),
+(2, 'Alex'),
+(3, 'Alice'),
+(4, 'Bob'),
+(5, 'Charlie'),
+(6, 'David'),
+(7, 'Eva'),
+(8, 'Frank'),
+(9, 'Grace'),
+(10, 'Hannah');
+
+-- Insert expenses
+INSERT INTO expenses (expense_id, user_id, amount, category, expense_date, description) VALUES
+(1, 1, 250, 'Food', '2025-12-01', 'Lunch'),
+(2, 1, 100, 'Travel', '2025-12-01', 'Bus'),
+(3, 1, 500, 'Shopping', '2025-12-02', 'Clothes'),
+(4, 1, 200, 'Food', '2025-12-03', 'Dinner'),
+
+(5, 2, 300, 'Food', '2025-12-01', 'Dinner'),
+(6, 2, 650, 'Travel', '2025-12-04', 'Train'),
+
+(7, 3, 800, 'Shopping', '2025-12-02', 'Shoes'),
+
+(8, 4, 750, 'Food', '2025-12-03', 'Party'),
+
+(9, 5, 650, 'Travel', '2025-12-05', 'Flight'),
+
+(10, 6, 750, 'Shopping', '2025-12-06', 'Electronics'),
+
+(11, 7, 550, 'Food', '2025-12-07', 'Groceries'),
+
+(12, 8, 550, 'Travel', '2025-12-08', 'Taxi'),
+
+(13, 9, 670, 'Food', '2025-12-09', 'Lunch'),
+
+(14, 10, 730, 'Shopping', '2025-12-10', 'Bag');

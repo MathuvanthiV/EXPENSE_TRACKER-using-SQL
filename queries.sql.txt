@@ -1,0 +1,88 @@
+1.Total spending for each user 
+
+select u.name,sum(e.amount) as total_amount 
+from users u 
+join expenses e on u.user_id = e.user_id 
+group by u.user_id;
+
+2.How much money was spent in each category 
+
+select category,sum(amount) 
+from expenses group by category;
+
+3.User spending highest amount
+
+select u.name,sum(e.amount) as total_spent from users u join expenses e on u.user_id=e.user_id 
+group by u.user_id 
+order by total_spent desc
+limit 1;
+
+4.Find the day with the highest total expenses
+
+select expense_date , sum(amount) as highest_amt
+from expenses 
+group by expense_date 
+order by highest_amt desc 
+limit 1;
+
+5.Find expenses that are higher than the average expenses
+
+ select amount
+from expenses 
+where amount>(select avg(amount) from expenses);
+
+6.Find users whose total spending is more than 500 
+
+select u.name, sum(e.amount) as total_spending from users u 
+join expenses e on u.user_id=e.user_id 
+group by u.user_id 
+having total_spending >500;
+
+7.Monthly Expense Per User
+ 
+select u.name, sum(e.amount), strftime('%Y-%m', e.expense_date) as month from users u join expenses e on u.user_id=e.user_id 
+group by u.user_id,month 
+order by u.user_id,month;
+
+--(strftime-it is string format time used to retrieve dates .%Y-4 digit year(2025) , %y-2 digit year(25) ,%m-month(12)[strftime is used in sqlite])
+
+8.Find users who have NO expenses
+
+select u.name , u.user_id from users u
+left join expenses e on u.user_id=e.user_id 
+where e.user_id is null;
+
+(-- used e.user_id is null instead of u.user_id because u.user_id is a primary key and it cannot be null.)
+
+9.most frequently used expense category 
+
+select category , count(*) as most_used 
+from expenses 
+group by category
+order by category desc 
+limit 1;
+
+10.Top 3 Users by Total Spending 
+
+select u.name, sum(e.amount) as spent 
+from users u 
+join expenses e on u.user_id=e.user_id 
+group by u.user_id 
+order by spent desc 
+limit 3;
+
+11.second highest spender 
+
+SELECT u.name, SUM(e.amount) AS spent
+FROM users u
+JOIN expenses e ON u.user_id = e.user_id
+GROUP BY u.user_id
+ORDER BY spent DESC
+LIMIT 1 OFFSET 1;
+
+12.Find Expenses Between Two Dates
+
+select u.name,e.amount,e.category,e.expense_date as date
+from users u 
+join expenses e on u.user_id=e.user_id 
+where date between '2025-12-01' and '2025-12-03';
